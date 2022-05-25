@@ -5,6 +5,9 @@ class Solution {
         HashMap<Character, Integer> A = new HashMap<Character, Integer>();
         int len1 = s.length();
         int len2 = t.length();
+        if(len1 != len2) { // unequal strings cannot be anagrams
+            return false;
+        }
         for(int a=0; a<len1; a++) {
             if(A.get(s.charAt(a)) == null) {
                 A.put(s.charAt(a), 1);
