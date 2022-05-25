@@ -2,43 +2,72 @@ import java.util.HashMap;
 
 class Solution {
     public boolean isAnagram(String s, String t) {
-        HashMap<Character, Integer> A = new HashMap<Character, Integer>();
         int len1 = s.length();
         int len2 = t.length();
         if(len1 != len2) { // unequal strings cannot be anagrams
             return false;
         }
+        int count[] = new int[26];
+        // add all the characters of s
         for(int a=0; a<len1; a++) {
-            if(A.get(s.charAt(a)) == null) {
-                A.put(s.charAt(a), 1);
-                // System.out.println("Key:" + s.charAt(a) + " Value: 1");
-                continue;
-            }
-            int n = A.get(s.charAt(a));
-            n++;
-            A.put(s.charAt(a), n);
-            // System.out.println("Key:" + s.charAt(a) + "Value:" + n);
+            count[s.charAt(a) - 'a']++;
         }
-        // all characters of s are in the HashMap
-        // let's check t now
-        for(int a=0; a<len2; a++) {
-            if(A.get(t.charAt(a)) == null) {
-                return false;
-            }
-            int n = A.get(t.charAt(a));
-            n--;
-            A.put(t.charAt(a), n);
+        // remove all corresponding characters of t
+        for(int b=0; b<len2; b++) {
+            count[t.charAt(b) - 'a']--;
         }
-        // now, we need to make sure that all values in the HashMap are zero i.e. each letter was
-        // used exactly once.
-        for(int a : A.values()) {
-            if (a!=0) {
+        // check for non-zero elements and return false, if any
+        for(int c=0; c<count.length; c++) {
+            if(count[c] != 0) {
                 return false;
             }
         }
         return true;
     }
     
+    
+    
+    
+    /** My faster implementation */
+    // public boolean isAnagram(String s, String t) {
+    //     HashMap<Character, Integer> A = new HashMap<Character, Integer>();
+    //     int len1 = s.length();
+    //     int len2 = t.length();
+    //     if(len1 != len2) { // unequal strings cannot be anagrams
+    //         return false;
+    //     }
+    //     for(int a=0; a<len1; a++) {
+    //         if(A.get(s.charAt(a)) == null) {
+    //             A.put(s.charAt(a), 1);
+    //             // System.out.println("Key:" + s.charAt(a) + " Value: 1");
+    //             continue;
+    //         }
+    //         int n = A.get(s.charAt(a));
+    //         n++;
+    //         A.put(s.charAt(a), n);
+    //         // System.out.println("Key:" + s.charAt(a) + "Value:" + n);
+    //     }
+    //     // all characters of s are in the HashMap
+    //     // let's check t now
+    //     for(int a=0; a<len2; a++) {
+    //         if(A.get(t.charAt(a)) == null) {
+    //             return false;
+    //         }
+    //         int n = A.get(t.charAt(a));
+    //         n--;
+    //         A.put(t.charAt(a), n);
+    //     }
+    //     // now, we need to make sure that all values in the HashMap are zero i.e. each letter was
+    //     // used exactly once.
+    //     for(int a : A.values()) {
+    //         if (a!=0) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+    
+    /** My slower implementatio. */
     // public boolean isAnagram(String s, String t) {
     //     int len1 = s.length();
     //     int len2 = t.length();
