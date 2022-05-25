@@ -1,15 +1,5 @@
-import java.util.HashMap;
-
 class Solution {
     public int romanToInt(String s) {
-        HashMap<Character, Integer> roman = new HashMap<Character, Integer>();
-        roman.put('I', 1);
-        roman.put('V', 5);
-        roman.put('X', 10);
-        roman.put('L', 50);
-        roman.put('C', 100);
-        roman.put('D', 500);
-        roman.put('M', 1000);
         int len = s.length();
         int num = 0; //to store the final value
         for(int a=0; a<len; a++) {
@@ -52,8 +42,26 @@ class Solution {
                     num += 100;
                 }
             }
-            else {
-                num += roman.get(s.charAt(a));
+            else if (s.charAt(a) == 'V') {
+                num += 5;
+            }
+            else if (s.charAt(a) == 'L') {
+                num += 50;
+            }
+            else if (s.charAt(a) == 'D') {
+                num += 500;
+            }
+            else if(s.charAt(a) == 'M'){
+                num += 1000;
+            }
+            else if(s.charAt(a) == 'I'){
+                num += 1;
+            }
+            else if(s.charAt(a) == 'X'){
+                num += 10;
+            }
+            else if(s.charAt(a) == 'C'){
+                num += 100;
             }
         }
         return num;
