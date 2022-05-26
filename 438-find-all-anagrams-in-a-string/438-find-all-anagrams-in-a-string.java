@@ -6,6 +6,14 @@ class Solution {
         int len2 = s.length();
         List<Integer> output = new ArrayList<Integer>();
         for(int a=0; a<(len2-len1+1); a++) {
+            boolean chk1 = false;
+            for(char c: p.toCharArray()) {
+                if(s.charAt(a) == c) {
+                    chk1 = true;
+                    break;
+                }
+            }
+            if(!chk1) continue;
             String s1 = s.substring(a, a+len1);
             boolean chk = isAnagram(p, s1);
             if(chk) {
