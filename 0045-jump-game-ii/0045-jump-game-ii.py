@@ -10,7 +10,7 @@ class Solution:
         stops = [0]
         if (n == 1):
             return 0
-        while (i < n) :
+        while (i < n):
             maximum = -1
             if (nums[i] >= remDistance):
                 break
